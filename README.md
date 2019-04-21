@@ -14,7 +14,7 @@ We check every request the webpage makes and if the URL contains Google's ads se
 
 ## How can I use this on my phone?
 
-Download the APK file from [here](app\build\outputs\apk\debug\app-debug.apk) (inside the "app\build\outputs\apk\debug" folder), transfer to your device and install it. You will need to disable [unsigned apps](https://yourbusiness.azcentral.com/install-unsigned-android-app-9807.html), I still run the debug version so I don't care to sign it.
+Download the APK file from [here](tree/master\app\build\outputs\apk\debug\app-debug.apk) (inside the "app\build\outputs\apk\debug" folder), transfer to your device and install it. You will need to disable [unsigned apps](https://yourbusiness.azcentral.com/install-unsigned-android-app-9807.html), I still run the debug version so I don't care to sign it.
 
 ## Does everything work?
 
