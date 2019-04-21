@@ -13,10 +13,16 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
+import android.support.annotation.RequiresApi
+import android.util.Log
+import android.webkit.WebResourceRequest
+import java.io.InputStream
 import java.lang.Exception
 
 
 class MainActivity : AppCompatActivity() {
+    private val adRegex = Regex("(doubleclick)|(pagead)|(googlesyndication)|(get_midroll_info)|(/ads)")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -29,11 +35,22 @@ class MainActivity : AppCompatActivity() {
         web.settings.javaScriptEnabled = true
         web.webViewClient = object : WebViewClient() {
             override fun shouldInterceptRequest(view: WebView?, url: String?): WebResourceResponse? {
-                // Block ads from loading, they are annoying
-                if (url?.contains("doubleclick")!!) {
-                    return null
+                if (url?.contains(adRegex)!!) {
+                    return WebResourceResponse("", "UTF-8", null)
                 }
-                return super.shouldInterceptRequest(view, url)
+
+                return  super.shouldInterceptRequest(view, url)
+            }
+
+            @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+            override fun shouldInterceptRequest(view: WebView?, request: WebResourceRequest?): WebResourceResponse? {
+                val url = request?.url!!.toString()
+
+                if (url.contains(adRegex)) {
+                    return WebResourceResponse("", "UTF-8", null)
+                }
+
+                return  super.shouldInterceptRequest(view, request)
             }
 
             override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
@@ -57,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         web.loadUrl("https://www.youtube.com")
     }
 
-    fun openBrowser(url: String){
+    fun openBrowser(url: String) {
         try {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
         } catch (ignored: Exception) {

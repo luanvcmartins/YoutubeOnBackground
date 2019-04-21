@@ -10,11 +10,11 @@ It's just a activity with a custom webview that doesn't report visibility status
 
 ## How do you block the ads?
 
-We check every request the webpage makes and if the URL contains Google's ads service (doubleclick.net), we don't let it load.
+We check every request the webpage makes and if the URL contains a string that might be related to ads, we don't let it load.
 
 ## How can I use this on my phone?
 
-Download the APK file from [here](app-debug.apk) (or the "app-debug.apk" file), transfer to your device and install it. You will need to disable [unsigned apps](https://yourbusiness.azcentral.com/install-unsigned-android-app-9807.html), I still run the debug version so I don't care to sign it.
+Download the APK file from [here](app-release.apk) (or the "app-release.apk" file), transfer to your device and install it.
 
 ## Does everything work?
 
